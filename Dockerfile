@@ -2,7 +2,7 @@ FROM ubuntu:17.04
 
 # Set up basic packages
 RUN apt-get update
-RUN apt-get install -y man-db locales git vim tmux zsh x11-xkb-utils software-properties-common
+RUN apt-get install -y man-db locales git vim tmux zsh x11-xkb-utils software-properties-common sudo
 
 # Set up locale
 RUN sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
@@ -26,25 +26,21 @@ RUN update-alternatives --install /usr/bin/clang clang /usr/bin/clang-5.0 60 --s
 ADD pkglst /root
 RUN apt-get --assume-yes install $(cat pkglst)
 
-# Add user demo and switch
-RUN useradd -m demo
+# Add user docker and switch
+RUN useradd -m docker && echo "docker" | chpasswd && adduser docker sudo
 
-# Copy code samples
-ADD samples /home/demo/samples
-RUN chown demo:demo -R /home/demo/samples
-
-# Set up config for demo user
-USER demo
-WORKDIR /home/demo
+# Set up config for docker user
+USER docker
+WORKDIR /home/docker
 RUN git clone http://github.com/Wentzell/dotfiles
-WORKDIR /home/demo/dotfiles
+WORKDIR /home/docker/dotfiles
 RUN git checkout ubuntu
 RUN git submodule init
 RUN git submodule update
 RUN ./link.sh
-WORKDIR /home/demo
-RUN git clone http://github.com/altercation/vim-colors-solarized /home/demo/.vim/bundle/vim-colors-solarized
+WORKDIR /home/docker
+RUN git clone http://github.com/altercation/vim-colors-solarized /home/docker/.vim/bundle/vim-colors-solarized
 RUN vim +VundleInstall +qall &> /dev/null
-ADD debugging /home/demo/
+ADD debugging /home/docker/
 
 CMD ["/usr/bin/zsh"]
