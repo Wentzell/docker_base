@@ -2,7 +2,7 @@ FROM ubuntu:16.04
 
 # Set up basic packages
 RUN apt-get update
-RUN apt-get install -y apt-utils software-properties-common sudo man-db locales wget git vim tmux zsh x11-xkb-utils
+RUN apt-get install -y apt-utils software-properties-common sudo locate man-db locales wget git vim tmux zsh x11-xkb-utils
 
 # Set up locale
 RUN sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && locale-gen
