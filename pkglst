@@ -12,6 +12,9 @@ gdb
 clang
 clang-format
 clang-tidy
+llvm
 libclang-dev
 python-dev
+python-pip
+python-setuptools
 python-clang-6.0
