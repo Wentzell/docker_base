@@ -1,1 +1,17 @@
-valgrind clang-5.0 clang-format-5.0 clang-tidy-5.0 libclang-5.0-dev python-dev python-clang-5.0
+git
+vim
+tmux
+zsh
+sudo
+software-properties-common
+x11-xkb-utils
+man-db
+g++
+valgrind
+gdb
+clang
+clang-format
+clang-tidy
+libclang-dev
+python-dev
+python-clang-6.0
