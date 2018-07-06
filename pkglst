@@ -3,12 +3,17 @@ vim
 tmux
 zsh
 sudo
+wget
+make
+cmake
 software-properties-common
+gpg-agent
 x11-xkb-utils
 man-db
 g++
 valgrind
 gdb
+cppcheck
 clang
 clang-format
 clang-tidy
