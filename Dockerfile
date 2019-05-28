@@ -1,4 +1,4 @@
-FROM ubuntu:bionic
+FROM ubuntu:disco
 
 ## Set up additional packages
 WORKDIR /tmp
