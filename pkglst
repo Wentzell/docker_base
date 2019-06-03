@@ -6,6 +6,7 @@ sudo
 wget
 make
 cmake
+ccache
 software-properties-common
 locales
 gpg-agent
@@ -19,6 +20,7 @@ cppcheck
 clang
 clang-format
 clang-tidy
+clang-tools
 llvm
 libclang-dev
 python-dev
