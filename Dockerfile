@@ -33,4 +33,4 @@ WORKDIR /home/$NB_USER
 RUN git clone http://github.com/altercation/vim-colors-solarized /home/$NB_USER/.vim/bundle/vim-colors-solarized
 RUN vim +VundleInstall +qall &> /dev/null
 
-CMD ["/usr/bin/zsh"]
+CMD ["/usr/bin/zsh", "-l"]
