@@ -22,6 +22,8 @@ clang-format
 clang-tidy
 clang-tools
 llvm
+libc++-dev
+libc++abi-dev
 libclang-dev
 python-dev
 python-pip
