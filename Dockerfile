@@ -1,9 +1,10 @@
-FROM ubuntu:disco
+FROM ubuntu:focal
 
 ## Set up additional packages
 WORKDIR /tmp
 ADD pkglst /tmp
-RUN apt-get update && \
+RUN yes | unminimize && \
+    apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends $(cat pkglst) && \
     apt-get autoremove --purge -y && \
     apt-get autoclean -y && \
