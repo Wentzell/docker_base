@@ -6,6 +6,7 @@ sudo
 wget
 make
 cmake
+ninja-build
 ccache
 software-properties-common
 locales
