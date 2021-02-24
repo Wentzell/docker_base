@@ -23,6 +23,7 @@ clang-format
 clang-tidy
 clang-tools
 llvm
+lldb
 libc++-dev
 libc++abi-dev
 libclang-dev
