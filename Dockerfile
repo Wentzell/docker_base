@@ -1,14 +1,51 @@
-FROM ubuntu:focal
+FROM ubuntu:jammy
+ARG LLVM=13
 
 ## Set up additional packages
-WORKDIR /tmp
-ADD pkglst /tmp
-RUN yes | unminimize && \
-    apt-get update && \
-    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends $(cat pkglst) && \
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+        git \
+        vim \
+        neovim \
+        tmux \
+        zsh \
+        sudo \
+        wget \
+        make \
+        cmake \
+        ninja-build \
+        ccache \
+        software-properties-common \
+        locales \
+        gpg-agent \
+        openssh-server \
+        x11-xkb-utils \
+        less \
+        man-db \
+        g++ \
+        valgrind \
+        gdb \
+        cppcheck \
+        clang-${LLVM} \
+        clangd-${LLVM} \
+        clang-format-${LLVM} \
+        clang-tidy-${LLVM} \
+        llvm \
+        lldb-${LLVM} \
+        libc++-${LLVM}-dev \
+        libc++abi-${LLVM}-dev \
+        libomp-${LLVM}-dev \
+        libclang-${LLVM}-dev \
+        python3-clang-${LLVM} \
+        python3-dev \
+        python3-pip \
+        python3-setuptools \
+        python3-lldb-${LLVM} && \
     apt-get autoremove --purge -y && \
     apt-get autoclean -y && \
     rm -rf /var/cache/apt/* /var/lib/apt/lists/*
+
+# Use LLVM-13 by default
+RUN for i in lldb clang clang++ clang-tidy clangd; do update-alternatives --install /usr/local/bin/$i $i /usr/bin/$i-${LLVM} 20; done
 
 # Set the locale
 RUN sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
